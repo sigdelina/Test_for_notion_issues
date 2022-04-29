@@ -13,5 +13,5 @@ jobs:
       - name: 'Learn Section Updater'
         uses: 'devorein/github-readme-learn-section-notion@master'
         with:
-          database_id: ${{ secrets.Tasks }}
+          database_id: ${{ secrets.Issues_project }}
           token_v2: ${{ secrets.Testing2 }}
