@@ -1,0 +1,29 @@
+name: create-issues
+
+on:
+  schedule:
+    - cron: 30 0 * * * # JST 9:30
+  # 再実行やデバッグ用に手動でも実行可能にしておく
+  workflow_dispatch:
+
+env:
+  TZ: "Europe/Oslo"
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: yarn install
+      - run: yarn node --loader ts-node/esm src/create_issues.ts
+        env:
+          NOTION_KEY: ${{ secrets.TESTING2 }}
+          NOTION_DATABASE_ID: ${{ secrets.ISSUES_PROJECT }}
+          REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+          REPO_GITHUB_OWNER: ${{ secrets.REPO_GITHUB_OWNER }}
+          REPO_GITHUB_REPO: ${{ secrets.REPO_GITHUB_REPO }}
+          PROPERTY_TITLE: ${{ secrets.PROPERTY_TITLE }}
+          PROPERTY_NO: ${{ secrets.PROPERTY_NO }}
+          PROPERTY_GITHUB: ${{ secrets.PROPERTY_GITHUB }}
