@@ -25,5 +25,5 @@ jobs:
       - name: Add GitHub Issues to Notion
         uses: instantish/notion-github-action@v1.2.0
         with:
-          notion-token: ${{ secrets.Testing }}
+          notion-token: ${{ secrets.Testing2 }}
           notion-db: ${{ secrets.Tasks }}
